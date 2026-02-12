@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:17
+    container_name: org_db
+    platform: linux/amd64
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test_luna
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: org_app
+    restart: always
+    platform: linux/amd64
+    depends_on:
+      - db
+    environment:
+      DB_URL: postgresql+asyncpg://postgres:postgres@db:5432/test_luna
+      INIT_DB_FILE: ./init_db.sql
+      API_KEY: secret1
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "
+      uv run alembic upgrade head && uv run uvicorn src.main:create_app --host=0.0.0.0 --port=8000
+      "
+
+volumes:
+  db_data:

@@ -1,0 +1,10 @@
+.env
+.flake8
+.gitignore
+docker-compose.yaml
+Dockerfile
+README.md
+.venv
+.idea
+.git
+.DS_Store

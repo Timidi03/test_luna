@@ -1,0 +1,39 @@
+[project]
+name = "test-luna"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.18.4",
+    "asyncpg>=0.31.0",
+    "black>=26.1.0",
+    "dotenv>=0.9.9",
+    "fastapi>=0.128.7",
+    "flake8>=7.3.0",
+    "greenlet>=3.3.1",
+    "isort>=7.0.0",
+    "pydantic>=2.12.5",
+    "sqlalchemy>=2.0.46",
+    "uvicorn>=0.40.0",
+]
+
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | migrations
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
