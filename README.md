@@ -39,7 +39,7 @@ cd test_luna
 ### 2. Запускаем проект 
 
 ```bash
-docker compose up -d
+docker compose up --build
 ```
 Если проект не может запустится из-за различной архитектуры, попробуйте в файле `docker-compose.yaml` в обоих сервисах
 удалить строку `platform: linux/amd64`
